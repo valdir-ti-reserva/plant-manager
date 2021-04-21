@@ -1,5 +1,12 @@
 import React from 'react'
-import {SafeAreaView, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
+import {
+    SafeAreaView, 
+    Text, 
+    Image, 
+    StyleSheet, 
+    TouchableOpacity,
+    Dimensions
+} from 'react-native'
 
 import colors from '../styles/colors'
 
@@ -14,7 +21,11 @@ export function Welcome () {
                 forma fácil
             </Text>
 
-            <Image source={wateringImage} style={styles.image} />
+            <Image 
+                source={wateringImage} 
+                style={styles.image}
+                resizeMode="contain" 
+            />
 
             <Text style={styles.subTitle}>
                 Não esqueça mais de regar suas {'\n'} 
@@ -33,12 +44,11 @@ export function Welcome () {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center'
     },
     image: {
-        width: 292,
-        height: 284
+        height: Dimensions.get('window').width * 0.7
     },
     title: {
         fontSize: 32,
