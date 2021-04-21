@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     Dimensions
 } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import { Feather } from '@expo/vector-icons'
 
 import colors from '../styles/colors'
@@ -16,6 +17,13 @@ import fonts from '../styles/fonts'
 import wateringImage from '../assets/watering.png'
 
 export function Welcome () {
+
+    const navigation = useNavigation()
+
+    function handleStart() {
+        navigation.navigate('UserIdentification')
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrapper}>   
@@ -36,7 +44,11 @@ export function Welcome () {
                     sempre que precisar.
                 </Text>
 
-                <TouchableOpacity style={styles.button} activeOpacity={0.75}>
+                <TouchableOpacity 
+                    style={styles.button} 
+                    activeOpacity={0.75}
+                    onPress={handleStart}
+                >
                     <Feather 
                         name="chevron-right" 
                         style={styles.buttonIcon} 
