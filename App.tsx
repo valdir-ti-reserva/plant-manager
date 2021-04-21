@@ -7,6 +7,7 @@ import {
 import appLoading from 'expo-app-loading'
 import { Welcome } from './src/pages/Welcome'
 import AppLoading from 'expo-app-loading';
+import { UserIdentification } from './src/pages/UserIdentification';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({
@@ -18,6 +19,7 @@ export default function App() {
     return <AppLoading />
 
   return (
-    <Welcome />
+    // <Welcome />
+    <UserIdentification />
   );
 }
