@@ -31,17 +31,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 20,
         marginTop: getStatusBarHeight(),
-        padding: 20
     },
     greeting: {
-        fontSize: 32,
+        fontSize: 24,
         color: colors.heading,
-        fontFamily:fonts.text
+        fontFamily: fonts.text
     },
     userName: {
         fontSize: 32,
-        fontFamily: fonts.heading,
         color: colors.heading,
+        fontFamily: fonts.heading,
         lineHeight: 40
     },
     image: {
