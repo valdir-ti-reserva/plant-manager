@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
     height: 40,
     width: 76,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginRight: 5
   },
   containerActive: {
     backgroundColor: colors.green_light
