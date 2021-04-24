@@ -8,6 +8,7 @@ import {
 
 import { Header } from '../components/Header'
 import { EnvironmentButton } from '../components/EnvironmentButton'
+import { PlantCardPrimary } from '../components/PlantCardPrimary'
 
 import colors from '../styles/colors'
 import fonts from '../styles/fonts'
@@ -18,13 +19,26 @@ interface EnvironmentProps {
     key: string
     title: string
 }
+interface PlantProps {
+    id: string
+    name: string
+    about: string
+    water_tips: string
+    photo: string
+    environments: [string]
+    frequency: {
+      times: number
+      repeat_every: string
+    }
+}
 
 export function PlantSelect(){
     const [environmet, setEnvironment] = useState<EnvironmentProps[]>()
+    const [plant, setPlant] = useState<PlantProps[]>()
 
     useEffect(() => {
         async function fetchEnvironment(){
-            const { data } = await api.get('plants_environments')
+            const { data } = await api.get('plants_environments?_sort=title&_order=asc')
             setEnvironment([
                 {
                     key: 'all',
@@ -35,6 +49,15 @@ export function PlantSelect(){
         }
         
         fetchEnvironment()
+    }, [])
+    
+    useEffect(() => {
+        async function fetchPlant(){
+            const { data } = await api.get('plants?_sort=name&_order=asc')
+            setPlant(data)
+        }
+        
+        fetchPlant()
     }, [])
 
     return (
@@ -63,6 +86,19 @@ export function PlantSelect(){
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={styles.environmentList}
+                />
+            </View>
+           
+            <View style={styles.plants}>
+                <FlatList 
+                    data={plant}
+                    renderItem={({ item }) => (
+                        <PlantCardPrimary
+                            data={item}
+                        />
+                    )}
+                    showsVerticalScrollIndicator={false}
+                    numColumns={2}
                 />
             </View>
 
@@ -98,5 +134,10 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         marginLeft: 32,
         marginVertical: 32
+    },
+    plants: {
+        flex: 1,
+        paddingHorizontal: 32,
+        justifyContent: 'center'
     }
 })
